@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import './SignUp.css';
-import {firebaseApp} from 'firebase';
+
 
 class SignUp extends Component {
 
   constructor(props){
     super(props);
     this.state={
-      Email:'',
-      password:''
+      mail:'',
+      pass:'',
+      phone:''
     }
-
-  }
+this.SignUp=this.SignUp.bind(this);
+  };
   SignUp()
 {
-  console.log('this.state',this.state);
-  const{Email,password}=this.state;
-  firebaseApp.auth().emailandpassword(Email,password)
-  .catch(error=>{console.log(error,error);
-
-  })
-}
+  this.setState({mail:this.state.Email});
+  this.setState({pass:this.state.password});
+  this.setState({phone:this.state.phoneno});
+  //console.log('this.state',this.state);
+const{mail,pass,phone}=this.state;
+};
   render() {
     return (
      <div className="form-inline">
@@ -29,27 +29,41 @@ class SignUp extends Component {
         <input
             className="form-control"
             type="Text"
-            placeholder="Email"
+            placeholder="Enter Email"
             onChange={event=>this.setState({Email: event.target.value})}
         />
         <input
             className="form-control"
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             onChange={event=>this.setState({password:event.target.value})}
+        />
+        <input
+            className="form-control"
+            type="Text"
+            placeholder="Enter Phone no."
+            onChange={event=>this.setState({phoneno: event.target.value})}
         /> 
       <button
         className="btn btn-primary"
         type="button"
-        onClick={()=>this.SignUp()}
+        onClick={()=>this.SignUp()
+      }
         >
         Sign Up
         
 
       </button>
+      <h2> {this.state.mail}</h2>
+      <h2>{this.state.pass}</h2>
+      <h2>{this.state.phone}</h2>
+
       </div>
+
      </div>
+     
     );
   }
 }
+
 export default SignUp;
